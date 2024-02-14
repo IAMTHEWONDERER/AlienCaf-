@@ -35,6 +35,17 @@ app.get('/voidborn', (req, res) => {
         res.sendFile(__dirname + '/public/celestial.html');
     });
     
+app.get('/drinks', (req, res) => {
+    fs.readFile('drinks.json', 'utf8', (error, data) => {
+        if(error){
+            console.log(error);
+            return;
+        }
+        console.log(req)
+        const drinkList = JSON.parse(data);
+        res.send(drinkList);
+    })
+});
 
 app.listen(port, ()=>{
     console.log(`http://localhost:${port}`);

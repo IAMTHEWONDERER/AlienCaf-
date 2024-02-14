@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <h1>Runeterra's greatest Café</h1>
-        <h2>Hello Voidborn</h2>
-        <h3>Please choose drinks to have</h3>
+      <h1>Runeterra's greatest Café</h1>
+      <h2>Hello Voidborn</h2>
+      <h3>Please choose drinks to have</h3>
+      <h4>Here are your options</h4>
     </div>
-</body>
+    <div id="menu">
+      <button id="drinkDisplay">Display</button>
+    </div>
+    <script>
+  async function getDrinks() {
+    try {
+        const response = await fetch('/drinks'); // Fetch drinks data from server
+        const drinksData = await response.json(); // Extract JSON data from the response
+        
+        const normalDrinks = drinksData.normal; // Get drinks array for the "normal" category
+        const voidbornDrinks = drinksData.voidborn; // Get drinks array for the "voidborn" category
+        
+        const menuContainer = document.getElementById('menu'); // Get the container element where drinks will be displayed
+        
+        // Clear any existing content in the menu container
+        menuContainer.innerHTML = '';
+        
+        // Function to add drinks to the menu container
+        const addDrinksToMenu = (drinks) => {
+            drinks.forEach(drink => {
+                const drinkName = drink.drinkName; // Get the name of the drink
+                const drinkElement = document.createElement('p'); // Create a paragraph element
+                drinkElement.textContent = drinkName; // Set the paragraph text to the drink name
+                menuContainer.appendChild(drinkElement); // Append the paragraph to the menu container
+            });
+        };
+        
+        // Add drinks from the "normal" category
+        addDrinksToMenu(normalDrinks);
+        
+        // Add drinks from the "voidborn" category
+        addDrinksToMenu(voidbornDrinks);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+document.getElementById('drinkDisplay').addEventListener('click', (event) => {
+    event.preventDefault();
+    getDrinks();
+});
+
+    </script>
+  </body>
 </html>

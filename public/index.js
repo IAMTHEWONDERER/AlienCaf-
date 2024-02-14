@@ -4,14 +4,15 @@ alienId.addEventListener("submit", (event) => {
   const name = document.getElementById("name").value;
   const age = document.getElementById("age").value;
   const origin = document.getElementById("origin").value;
-  addNewUser(name, age, origin);
+  const password = document.getElementById("password").value;
+  addNewUser(name, age, origin, password);
   reservePage();
 });
 
-async function addNewUser(name, age, origin) {
+async function addNewUser(name, age, origin, password) {
   try {
     const data = await fetch(
-      `/users?name=${name}&age=${age}&origin=${origin}`,
+      `/users?name=${name}&age=${age}&origin=${origin}&password=${password}`,
       { method: "POST" }
     );
   } catch (error) {
