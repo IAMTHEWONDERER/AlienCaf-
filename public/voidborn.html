@@ -11,5 +11,33 @@
         <h2>Hello Voidborn</h2>
         <h3>Please choose drinks to have</h3>
     </div>
+    <div id="listAreaReg"><em>From earth we propose these drinks:</em><br> </div><br>
+    <div id="listAreaSpecial"> <em>You can also find drinks from your planet that you can enjoy on earth:<br></em></div><br>
+
+    <script>
+        async function getDrinkLists(){
+            try {
+                const data = await fetch('/drinks');
+                const drinkList = await data.json();
+                const listAreaReg = document.getElementById('listAreaReg')
+                const listAreaSpecial = document.getElementById('listAreaSpecial')
+                const regular = drinkList.normal
+                const special = drinkList.voidborn;
+                regular.forEach(element => {
+                    listAreaReg.innerHTML +=`name:${element.drinkName}, price:${element.price} BE <br>`
+                });
+                special.forEach(element =>{
+                    listAreaSpecial.innerHTML +=`name:${element.drinkName}, price:${element.price} BE <br>`
+                })
+
+
+
+            }catch {
+
+            } }
+            window.onload = ()=>{
+                getDrinkLists();
+            }
+    </script>
 </body>
 </html>
