@@ -24,8 +24,7 @@
         const normalDrinks = drinksData.normal; // Get drinks array for the "normal" category
         const voidbornDrinks = drinksData.voidborn; // Get drinks array for the "voidborn" category
         
-        const menuContainer = document.getElementById('menu'); // Get the container element where drinks will be displayed
-        
+        const menuContainer = document.getElementById('menu'); // Get the container element where drinks will be displaye
         // Clear any existing content in the menu container
         menuContainer.innerHTML = '';
         
@@ -36,6 +35,27 @@
                 const drinkElement = document.createElement('p'); // Create a paragraph element
                 drinkElement.textContent = drinkName; // Set the paragraph text to the drink name
                 menuContainer.appendChild(drinkElement); // Append the paragraph to the menu container
+                
+                const minusButton = document.createElement('button');
+                const plusButton = document.createElement('button');
+                
+                drinkElement.appendChild(minusButton); // Append the
+                drinkElement.appendChild(plusButton); // Append the
+                
+                const negButton = document.createTextNode('-');
+                const posButton = document.createTextNode('+');
+                
+                minusButton.appendChild(negButton);
+                plusButton.appendChild(posButton);
+            
+                const drinkCounter = document.createElement('p');
+                drinkElement.appendChild(drinkCounter);
+                
+                const drinkCounter2 = document.createTextNode(0);
+                drinkCounter.appendChild(drinkCounter2);
+                
+
+
             });
         };
         

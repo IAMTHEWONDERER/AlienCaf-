@@ -1,0 +1,81 @@
+
+
+<div class="custom-select">
+    <label for="origin" class="label userorigin">What is Your Origins? </label>
+          <br />
+          <select name="origin" id="origin" class="dropdownlist">
+            <br />
+            <option disabled selected>Please select an option</option>
+            <option value="human">Humans / Vastayah</option>
+            <option value="yordle">Yordles</option>
+            <option value="voidborn">Voidborn</option>
+            <option value="celestial">Celestials</option>
+          </select>
+</div>
+
+<div
+  class="relative group rounded-lg w-64 bg-gray-50 overflow-hidden before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg before:[box-shadow:-60px_20px_10px_10px_#F9B0B9]"
+>
+  <svg
+    y="0"
+    xmlns="http://www.w3.org/2000/svg"
+    x="0"
+    width="100"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMidYMid meet"
+    height="100"
+    class="w-8 h-8 absolute right-0 -rotate-45 stroke-pink-300 top-1.5 group-hover:rotate-0 duration-300"
+  >
+    <path
+      stroke-width="4"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      fill="none"
+      d="M60.7,53.6,50,64.3m0,0L39.3,53.6M50,64.3V35.7m0,46.4A32.1,32.1,0,1,1,82.1,50,32.1,32.1,0,0,1,50,82.1Z"
+      class="svg-stroke-primary"
+    ></path>
+  </svg>
+  <select
+    class="appearance-none hover:placeholder-shown:bg-emerald-500 relative text-pink-400 bg-transparent ring-0 outline-none border border-neutral-500 text-neutral-900 placeholder-violet-700 text-sm font-bold rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5" >
+    <label> for="origin" class="label userorigin">What is Your Origins? </label>
+    <br />
+    <select name="origin" id="origin" class="dropdownlist">
+      <br />
+      <option disabled selected>Please select an option</option>
+      <option value="human">Humans / Vastayah</option>
+      <option value="yordle">Yordles</option>
+      <option value="voidborn">Voidborn</option>
+      <option value="celestial">Celestials</option>
+    
+</div>
+<div class="custom-container">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" height="100" class="svg-icon">
+        <path stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none" d="M60.7,53.6,50,64.3m0,0L39.3,53.6M50,64.3V35.7m0,46.4A32.1,32.1,0,1,1,82.1,50,32.1,32.1,0,0,1,50,82.1Z" class="svg-stroke-primary"></path>
+    </svg>
+    <label for="origin" class="label userorigin">What is Your Origins? </label><br/>
+    <select class="custom-select" id="origin" name="origin">
+        <option disabled selected>Please select an option</option>
+        <option value="human">Humans / Vastayah</option>
+        <option value="yordle">Yordles</option>
+        <option value="voidborn">Voidborn</option>
+        <option value="celestial">Celestials</option>
+    </select>
+</div>
+
+
+
+
+<div class="wave-group">
+    <input required="" 
+    type="text"
+    name="name"
+    id="name"
+    class="input">
+    <span class="bar"></span>
+    <label class="label">
+      <span class="label-char" style="--index: 0">N</span>
+      <span class="label-char" style="--index: 1">a</span>
+      <span class="label-char" style="--index: 2">m</span>
+      <span class="label-char" style="--index: 3">e</span>
+    </label>
+  </div>
