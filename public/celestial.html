@@ -25,10 +25,18 @@
                 const regular = drinkList.normal
                 const special = drinkList.celestial;
                 regular.forEach(element => {
-                    listAreaReg.innerHTML +=`name:${element.drinkName}, price:${element.price} BE <br>`
+                    listAreaReg.innerHTML +=`  <div class="product">
+        <h2>${element.drinkName}</h2>   <p>price:${element.price} BE</p><p id="id" >id: ${element.id}</p><br>
+        <input type="number" class="quantity" value="1" min="1">
+        <button class="addToCart">Add to Cart</button>
+       </div> `
                 });
                 special.forEach(element =>{
-                    listAreaSpecial.innerHTML +=`name:${element.drinkName}, price:${element.price} BE <br>`
+                    listAreaSpecial.innerHTML +=`  <div class="product">
+        <h2>${element.drinkName}</h2>   <p>price:${element.price} BE</p><p id="id" >id: ${element.id}</p><br>
+        <input type="number" class="quantity" value="1" min="1">
+        <button class="addToCart">Add to Cart</button>
+       </div> `
                 })
 
 
