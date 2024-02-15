@@ -4,35 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <div>
-      <h1 id="test">Runeterra's greatest Café</h1>
-      <h2>Hello Voidborn</h2>
-      <h3>Please choose drinks to have</h3>
+    <div class="container">
+    <div class="headers">
+      <h1 class="title header">Doran's afterhour Café</h1>
+      <h3 id="test" class="title third">  </h3>
+      <h4 class="title fourth">Please choose drinks to have</h4>
     </div>
-    <div id="listAreaReg" display="inline">
-      <em>From earth we propose these drinks:</em><br />
-    </div>
-    <br />
-    <div id="listAreaSpecial">
-      <em
-        >You can also find drinks from your planet that you can enjoy on
-        earth:<br
-      /></em>
-    </div>
-    <br />
-    <div id="cart">
-      <p>total:</p>
-      <span id="total">0</span>
-    </div>
-    <button id="confirmCart">confirm cart and checkout</button>
+    <div class="onPageItems">
+      <div id="listAreaReg" display="inline" class="listAreaReg">
+        <em class="Idrink">From Ionia we propose these drinks:</em><br />
+      </div>
+      <br />
+      <div id="listAreaSpecial" class="listAreaSpecial">
+        <em class="vbdrink">
+          You can also find drinks from your realm that you can enjoy on Ionia:<br/></em>
+      </div>
+      <br />
+      <div id="cart" class="cartVB">
+        <p>total:</p>
+        <span id="total">0</span>
+      </div>
+      <button id="confirmCart">confirm cart and checkout</button>
+      </div>
+     </div>
+
+
+
+
+
+
+
+
+
 
     <script>
       async function getDrinkLists(id, userName) {
         document.getElementById(
           "test"
-        ).innerHTML += `<p id="name">name:${userName} id:${id}</p>`;
+        ).innerHTML += `<h3 id="name"> You are ${userName} and your number of reservation is ${id}</h3>`;
 
         try {
           const data = await fetch("/drinks");
