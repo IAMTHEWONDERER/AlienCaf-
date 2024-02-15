@@ -5,22 +5,11 @@ alienId.addEventListener("submit", (event) => {
   const age = document.getElementById("age").value;
   const origin = document.getElementById("origin").value;
   const password = document.getElementById("password").value;
-  addNewUser(name, age, origin, password);
-  reservePage();
-});
+  const id = Math.floor(Math.random()*100000)+1
 
-async function addNewUser(name, age, origin, password) {
-  try {
-    const data = await fetch(
-      `/users?name=${name}&age=${age}&origin=${origin}&password=${password}`,
-      { method: "POST" }
-    );
-  } catch (error) {
-    console.error(error);
-  }
-}
-document.getElementById("reservation").addEventListener("click", function () {
-  const origin = document.getElementById("origin").value;
+
+  addNewUser(id,name, age, origin,password);
+
   let destinationUrl;
 
   switch (origin) {
@@ -41,5 +30,16 @@ document.getElementById("reservation").addEventListener("click", function () {
   }
 
   // Redirect to the chosen URL
-  window.location.href = destinationUrl;
+window.location.href = `${destinationUrl}?id=${id}&name=${name}&age=${age}&origin=${origin}&pass=${password}`;
 });
+
+async function addNewUser(id,name, age, origin,password) {
+  try {
+    const data = await fetch(
+      `/users?id=${id}&name=${name}&age=${age}&origin=${origin}&pass=${password}`,
+      { method: "POST" }
+    );
+  } catch (error) {
+    console.error(error);
+  }
+}
