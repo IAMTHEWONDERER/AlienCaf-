@@ -14,12 +14,25 @@
         <input type="submit" value="Submit">
     </form>
 
+    <div class="cartCheckout">
+
+
+    </div>
+
 
 
     <script>
-        async function getCartElements(){
+         window.onload = ()=>{
+            const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        getCartElements(id);
+         }
+
+
+        async function getCartElements(id){
             try{
-                const data = await fetch('/cart')
+                const data = await fetch(`/cart/${id}`)
+                const cart = await data.json();
                  
 
             }catch{

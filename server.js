@@ -49,28 +49,8 @@ app.get('/users/:id',(req,res)=>{
 
     })
 })
-// app.get('/users/reserve.html', (req,res)=>{
-//     fs.readFile('./public/reserve.html', (error,data)=>{
-//         if(error){
-//             console.log(error);
-//         }
-//         else{
-//             res.send(data);
-//         }
-//     })
-// })
-app.get('/voidborn', (req, res) => {
-    res.sendFile(__dirname + '/public/voidborn.html');
-});
-app.get('/human', (req, res) => {
-    res.sendFile(__dirname + '/public/human.html');
-});
-app.get('/yordle', (req, res) => {
-    res.sendFile(__dirname + '/public/yordle.html');
-});
-app.get('/celestial', (req, res) => {
-    res.sendFile(__dirname + '/public/celestial.html');
-});
+
+
 app.get('/drinks',(req,res)=>{
     fs.readFile('drinks.json', (err,data)=>{
         if(err){
@@ -135,6 +115,17 @@ fs.writeFile('cart.json', jsonCart, (ERR)=>{
 
 })
 
+})
+app.get('/cart/:id',(req,res) =>{
+    fs.readFile('cart.json',(err,data)=>{
+        if (err){
+            console.log(err);
+            return ;
+        }
+        const cart = JSON.parse(data);
+        const customerCart = cart[req.params.id];
+        console.log(customerCart);
+    })
 })
 
 
