@@ -16,6 +16,13 @@ const getProductById = (id, list) => {
 }
 
 
+const getElementById = (id , array) =>{
+    return array.find(product =>{
+        return Number(product.id) === Number(id);
+    })
+    } 
+    
+
 const searchProduct = (min , max ,list ) => {
     productMatch = list.filter(product => product.price >= min && product.price <= max )
     return productMatch
@@ -29,4 +36,5 @@ const searchProduct = (min , max ,list ) => {
 module.exports ={
     getProductById : getProductById,
     searchProduct : searchProduct,
+    getElementById: getElementById,
 }

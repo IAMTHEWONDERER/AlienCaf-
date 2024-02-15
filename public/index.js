@@ -32,7 +32,47 @@ alienId.addEventListener("submit", (event) => {
   // Redirect to the chosen URL
 window.location.href = `${destinationUrl}?id=${id}&name=${name}&age=${age}&origin=${origin}&pass=${password}`;
 });
+document.getElementById('regularCustomer').addEventListener('submit',(event) =>{
+  event.preventDefault();
+  const id = document.getElementById('customerId').value;
+  const origin = document.getElementById('origins').value;
+   getCustomerById(id,origin);
+  
+  let destinationUrl;
 
+  switch (origin) {
+    case "human":
+      destinationUrl = "/human.html";
+      break;
+    case "voidborn":
+      destinationUrl = "/voidborn.html";
+      break;
+    case "celestial":
+      destinationUrl = "/celestial.html";
+      break;
+    case "yordle":
+      destinationUrl = "/yordle.html";
+      break;
+    default:
+      destinationUrl = "/index.html";
+  }
+
+  // Redirect to the chosen URL
+window.location.href = `${destinationUrl}?id=${id}&name=${name}&age=${age}&origin=${origin}&pass=${password}`;
+
+
+
+})
+
+async function getCustomerById(id,origin){
+  try{
+    const data = await fetch(`/users/${id}?origin=${origin}`)
+    const user = await data.json();
+            return user;
+  }catch(error){
+       console.log('error',error.message)
+  }
+}
 async function addNewUser(id,name, age, origin,password) {
   try {
     const data = await fetch(

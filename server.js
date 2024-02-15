@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const {getProductById , searchProduct} = require('./fonctionsUtil');
+const {getProductById , searchProduct ,getElementById} = require('./fonctionsUtil');
 const { log } = require('console');
 
 const port = 4400;
@@ -29,6 +29,25 @@ app.post('/users', (req, res) => {
 
     })
    
+})
+app.get('/users/:id',(req,res)=>{
+    console.log(req.params.id)
+    fs.readFile('user.json',(err,data)=>{
+        if (err){
+            console.log(err.message);
+            return;
+        }
+        const users = JSON.parse(data);
+        const user = getElementById(req.params.id, users);
+        console.log(user)
+        if (user){
+            res.send(user)
+        }else {
+            res.status(404).send();
+        }
+        
+
+    })
 })
 // app.get('/users/reserve.html', (req,res)=>{
 //     fs.readFile('./public/reserve.html', (error,data)=>{
