@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const {getProductById , searchProduct } = require('./fonctionsUtil')
+const {getProductById , searchProduct} = require('./fonctionsUtil');
+const { log } = require('console');
 
 const port = 4400;
 
@@ -80,7 +81,40 @@ app.get('/drinks/:id' , (req,res)=>{
 
 })
 app.post('/drinks/cart' , (req,res)=>{
-    console.log(req.query);
+    fs.readFile('cart.json', (err,data)=>{
+if (err){
+    console.log(err);
+    return
+}
+const idProperty = req.query.id
+const cart = JSON.parse(data);
+console.log(cart)
+let cartId = cart[idProperty] || [];
+console.log('This cartId before  push',cartId);
+
+const {user,name,qty,price,drinkId} = req.query
+const NewQty = {user,name,qty,price,drinkId} 
+const drinkIndex = cartId.findIndex(item => item.drinkId === NewQty.drinkId );
+if (drinkIndex == -1) {
+    cartId.push(NewQty);
+console.log('This cartId after push',cartId);
+} else {
+    cartId[drinkIndex].qty = NewQty.qty;
+}
+console.log('this is the new QTY', NewQty);
+cart[idProperty] = cartId;
+const jsonCart = JSON.stringify(cart)
+console.log('the cart after update ',jsonCart)
+fs.writeFile('cart.json', jsonCart, (ERR)=>{
+    if (ERR) {
+        console.log(ERR);
+    }
+    else {
+        console.log('success');
+    }
+})
+
+})
 
 })
 
