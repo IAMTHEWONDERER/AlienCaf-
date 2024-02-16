@@ -68,17 +68,16 @@
                 .textContent.split(" ")[1];
               const quantity = product.querySelector(".quantity").value;
 
-              // Fetch the product details asynchronously
+              // Fetch the product details 
               try {
                 const drinkToAdd = await getProductById(productId);
 
-                // Calculate the total price for the current item
                 const drinkTotal = drinkToAdd.price * quantity;
 
                 // Update the cart total
                 const cart = document.getElementById("cart");
                 const cartTotal = document.getElementById("total");
-                let total = parseInt(cartTotal.innerText) || 0; // Set default to 0
+                let total = parseInt(cartTotal.innerText) || 0; 
                 total += drinkTotal;
                 cartTotal.innerText = total;
                 try {

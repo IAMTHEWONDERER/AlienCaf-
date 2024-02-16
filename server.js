@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const {getProductById , searchProduct ,getElementById} = require('./fonctionsUtil');
+const {getProductById , getIndexById ,getElementById} = require('./fonctionsUtil');
 const { log } = require('console');
 
 const port = 4400;
@@ -125,8 +125,64 @@ app.get('/cart/:id',(req,res) =>{
         const cart = JSON.parse(data);
         const customerCart = cart[req.params.id];
         console.log(customerCart);
+        res.send(customerCart);
     })
 })
+app.put('/cart/:id',(req,res)=>{
+    fs.readFile('cart.json',(err,data)=>{
+        if (err){
+            console.log(err);
+            return ;
+        }
+        const cart = JSON.parse(data);
+        const customerCart = cart[req.params.id];
+        const productToUpdate = getElementById(req.query.productId,customerCart);
+        productToUpdate.qty = req.query.newQuantity;
+        res.send(customerCart)
+        // console.log(cart);
+        fs.writeFile('cart.json', JSON.stringify(cart), (ERR)=>{
+            if (ERR) {
+                console.log(ERR);
+            }
+            else {
+                console.log('success');
+            }
+        })
+    })
+
+})
+app.delete('/cart/:id',(req,res) =>{
+    fs.readFile('cart.json',(err,data)=>{
+        if (err){
+            console.log(err);
+            return ;
+        }
+        console.log(req.query.idToRemove);
+
+        const cart = JSON.parse(data);
+        const customerCart = cart[req.params.id];
+        console.log('before',cart);
+        const productToRemoveInd = getIndexById(req.query.idToRemove,customerCart);
+        customerCart.splice(productToRemoveInd,1);
+        res.send(customerCart)
+        console.log('after' ,cart);
+        fs.writeFile('cart.json', JSON.stringify(cart), (ERR)=>{
+            if (ERR) {
+                console.log(ERR);
+            }
+            else {
+                console.log('success');
+            }
+        })
+        
+
+        
+
+
+
+
+    })
+} )
 
 
 app.listen(port, () => {

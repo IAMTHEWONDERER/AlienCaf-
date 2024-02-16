@@ -1,44 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <div id="cartCheckout"></div>
 
     <form>
-        <label for="birthdate">Select your arrival date:</label>
-        <input type="date" id="date" name="date">
-        <input type="submit" value="Submit">
+      <label for="birthdate">Select your arrival date and checkout:</label>
+      <input type="date" id="date" name="date" />
+      <input type="submit" value="checkout" />
     </form>
 
-    <div class="cartCheckout">
-
-
-    </div>
-
-
-
     <script>
-         window.onload = ()=>{
-            const urlParams = new URLSearchParams(window.location.search);
+      window.onload = () => {
+        const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("id");
         getCartElements(id);
-         }
+      };
 
+      async function getCartElements(id) {
+        try {
+          const data = await fetch(`/cart/${id}`);
+          const cart = await data.json();
+          let total = 0;
+          const checkoutCart = document.getElementById("cartCheckout");
+          cart.forEach((element) => {
+            total += element.price * element.qty;
+            checkoutCart.innerHTML += ` <div class="product">
+        <h2>${element.name}</h2>   <p>price:${element.price} BE</p><p class="id">id: ${element.drinkId}</p><br>
+        <label for="qty">Quantity:</label>
+        <input type="number" class="quantity" value="${element.qty}" min="1">
+        <button class="updateCart">update cart</button>
+        <button class="removeItem">remove from cart</button>
+       </div>`;
+          });
+          checkoutCart.innerHTML += `<h2 id="total">total: ${total} BE</h2><br>`;
 
-        async function getCartElements(id){
-            try{
-                const data = await fetch(`/cart/${id}`)
-                const cart = await data.json();
-                 
-
-            }catch{
-
-            }
+          const updateCartButtons = document.querySelectorAll(".updateCart");
+          updateCartButtons.forEach((button) => {
+            button.addEventListener("click", async (event) => {
+              const product = event.currentTarget.parentNode;
+              const productId = product
+                .querySelector(".id")
+                .textContent.split(" ")[1];
+              let quantity = product.querySelector(".quantity").value;
+              try {
+                const data = await fetch(
+                  `/cart/${id}?productId=${productId}&newQuantity=${quantity}`,
+                  { method: "PUT" }
+                );
+                const cartUpdated = await data.json();
+                newTotal = 0;
+                cartUpdated.forEach((element) => {
+                  newTotal += element.price * element.qty;
+                });
+                document.getElementById(
+                  "total"
+                ).innerHTML = `<h2 id="total">total: ${newTotal} BE</h2><br>`;
+              }  catch (err) {
+          console.log(err);
         }
+
+            });
+          });
+        } catch (err) {
+          console.log(err);
+        }
+
+        const removeFromCartButton =
+                document.querySelectorAll(".removeItem");
+              removeFromCartButton.forEach((button) => {
+                button.addEventListener("click", async (event) => {
+                  const product = event.currentTarget.parentNode;
+                  const productId = product
+                    .querySelector(".id")
+                    .textContent.split(" ")[1];
+                    try{
+                        const data = await fetch(`/cart/${id}?idToRemove=${productId}`, {method:'DELETE'})
+                        const result = await data.json();
+
+                    } catch (err) {
+          console.log(err);
+        }
+                });
+              });
+      }
     </script>
-</body>
+  </body>
 </html>
