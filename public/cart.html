@@ -60,33 +60,40 @@
                 document.getElementById(
                   "total"
                 ).innerHTML = `<h2 id="total">total: ${newTotal} BE</h2><br>`;
-              }  catch (err) {
-          console.log(err);
-        }
-
+              } catch (err) {
+                console.log(err);
+              }
             });
           });
         } catch (err) {
           console.log(err);
         }
 
-        const removeFromCartButton =
-                document.querySelectorAll(".removeItem");
-              removeFromCartButton.forEach((button) => {
-                button.addEventListener("click", async (event) => {
-                  const product = event.currentTarget.parentNode;
-                  const productId = product
-                    .querySelector(".id")
-                    .textContent.split(" ")[1];
-                    try{
-                        const data = await fetch(`/cart/${id}?idToRemove=${productId}`, {method:'DELETE'})
-                        const result = await data.json();
-
-                    } catch (err) {
-          console.log(err);
-        }
-                });
+        const removeFromCartButton = document.querySelectorAll(".removeItem");
+        removeFromCartButton.forEach((button) => {
+          button.addEventListener("click", async (event) => {
+            const product = event.currentTarget.parentNode;
+            const productId = product
+              .querySelector(".id")
+              .textContent.split(" ")[1];
+            try {
+              const data = await fetch(`/cart/${id}?idToRemove=${productId}`, {
+                method: "DELETE",
               });
+              const result = await data.json();
+              product.innerHTML = ""
+              newTotal = 0;
+              result.forEach((element) => {
+                newTotal += element.price * element.qty;
+                });
+                document.getElementById(
+                  "total"
+                ).innerHTML = `<h2 id="total">total: ${newTotal} BE</h2><br>`;
+            } catch (err) {
+              console.log(err);
+            }
+          });
+        });
       }
     </script>
   </body>

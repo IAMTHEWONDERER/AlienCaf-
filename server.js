@@ -161,11 +161,10 @@ app.delete('/cart/:id',(req,res) =>{
 
         const cart = JSON.parse(data);
         const customerCart = cart[req.params.id];
-        console.log('before',cart);
         const productToRemoveInd = getIndexById(req.query.idToRemove,customerCart);
         customerCart.splice(productToRemoveInd,1);
         res.send(customerCart)
-        console.log('after' ,cart);
+        console.log('after' ,customerCart);
         fs.writeFile('cart.json', JSON.stringify(cart), (ERR)=>{
             if (ERR) {
                 console.log(ERR);
