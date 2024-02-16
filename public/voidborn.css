@@ -1,0 +1,69 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    width: 100%;
+    background-color: antiquewhite;
+    display: grid;
+    place-items: center;
+    height: 100vh; /* Set the height of the body to fill the viewport */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.subcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: auto;
+    height: 100%;
+    background-image: url("voidborn1.jpg");
+    background-size: cover;
+    background-position: center;
+    /* background-attachment: fixed; */
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.5
+    ); /* Set the background color with opacity */
+}
+.onPageItems {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr));
+    grid-gap: 10px;
+    padding: 10px;
+    margin: 10px;
+    /* background-color: rgba(0, 0, 0, 0.5); Set the background color with opacity */
+}
+.list {
+    font-family: League;
+    font-weight: light;
+    font-size: 14px;
+    color: antiquewhite;
+    left: 50%;
+    z-index: 2;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px;
+    padding: 10px;
+}
+.AreaRegion {
+    margin-top: 300px;
+}
+.AreaSpecial {
+    text-align: left;
+}
+
+.VBp,
+.VBs {
+    font-family: League;
+    font-weight: light;
+    font-style: bold;
+    font-size: 25px;
+    color: antiquewhite;
+}

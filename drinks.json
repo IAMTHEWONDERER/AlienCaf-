@@ -1,132 +1,152 @@
 {
-    "normal": [
-      {
-        "id": 1,
-        "drinkName": "Espresso Café",
-        "drinkType": "normal",
-        "price": 20
-      },
-      {
-        "id": 2,
-        "drinkName": "Water",
-        "drinkType": "normal",
-        "price": 10
-      },
-      {
-        "id": 3,
-        "drinkName": "Soda",
-        "drinkType": "normal",
-        "price": 20
-      },
-      {
-        "id": 4,
-        "drinkName": "Tea",
-        "drinkType": "normal",
-        "price": 15
-      }
-    ],
-    "yordle": [
-      {
-        "id": 5,
-        "drinkName": "Fizz Fizz ",
-        "drinkType": "yordle",
-        "price": 35
-      },
-      {
-        "id": 6,
-        "drinkName": "Teemo's Toxin ",
-        "drinkType": "yordle",
-        "price": 40
-      },
-      {
-        "id": 7,
-        "drinkName": "Poppy's Pummel Punch ",
-        "drinkType": "yordle",
-        "price": 45
-      },
-      {
-        "id": 8,
-        "drinkName": "Lulu's Laughing Elexir ",
-        "drinkType": "yordle",
-        "price": 50
-      }
-    ],
-    "human": [
-      {
-        "id": 9,
-        "drinkName": "Forest Bloom Tea ",
-        "drinkType": "human",
-        "price": 35
-      },
-      {
-        "id": 10,
-        "drinkName": "Demacia's Hot Cocoa ",
-        "drinkType": "human",
-        "price": 40
-      },
-      {
-        "id": 11,
-        "drinkName": "Cloudmane Cloudwater ",
-        "drinkType": "human",
-        "price": 45
-      },
-      {
-        "id": 12,
-        "drinkName": "Nightshade Dewdrop ",
-        "drinkType": "human",
-        "price": 50
-      }
-    ],
-    "celestial": [
-      {
-        "id": 13,
-        "drinkName": "Black Hole's extraction ",
-        "drinkType": "celestial",
-        "price": 35
-      },
-      {
-        "id": 14,
-        "drinkName": "Cosmic Tears",
-        "drinkType": "celestial",
-        "price": 40
-      },
-      {
-        "id": 15,
-        "drinkName": "Echoes of Creation ",
-        "drinkType": "celestial",
-        "price": 45
-      },
-      {
-        "id": 16,
-        "drinkName": "Targonian Latté ",
-        "drinkType": "celestial",
-        "price": 50
-      }
-    ],
-    "voidborn": [
-      {
-        "id": 17,
-        "drinkName": "Abyssal Draught ",
-        "drinkType": "voidborn",
-        "price": 35
-      },
-      {
-        "id": 18,
-        "drinkName": "Voidfire Vial ",
-        "drinkType": "voidborn",
-        "price": 40
-      },
-      {
-        "id": 19,
-        "drinkName": "Eldritch Essence ",
-        "drinkType": "voidborn",
-        "price": 45
-      },
-      {
-        "id": 20,
-        "drinkName": "Shadow Sip ",
-        "drinkType": "voidborn",
-        "price":50
-  }
+  "normal": [
+    {
+      "id": 1,
+      "drinkName": "Espresso Café",
+      "drinkType": "normal",
+      "price": 20,
+      "drinkImage": "public/imgs/coffee.jpg"
+    },
+    {
+      "id": 2,
+      "drinkName": "Water",
+      "drinkType": "normal",
+      "price": 10,
+      "drinkImage": "public/imgs/water.jpg"
+    },
+    {
+      "id": 3,
+      "drinkName": "Soda",
+      "drinkType": "normal",
+      "price": 20,
+      "drinkImage": "public/imgs/soda.jpg"
+    },
+    {
+      "id": 4,
+      "drinkName": "Tea",
+      "drinkType": "normal",
+      "price": 15,
+      "drinkImage": "public/imgs/tea.jpg"
+    }
+  ],
+  "yordle": [
+    {
+      "id": 5,
+      "drinkName": "Fizz Fizz ",
+      "drinkType": "yordle",
+      "price": 35,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 6,
+      "drinkName": "Teemo's Toxin ",
+      "drinkType": "yordle",
+      "price": 40,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 7,
+      "drinkName": "Poppy's Pummel Punch ",
+      "drinkType": "yordle",
+      "price": 45,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 8,
+      "drinkName": "Lulu's Laughing Elexir ",
+      "drinkType": "yordle",
+      "price": 50,
+      "drinkImage": "public/imgs"
+    }
+  ],
+  "human": [
+    {
+      "id": 9,
+      "drinkName": "Forest Bloom Tea ",
+      "drinkType": "human",
+      "price": 35,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 10,
+      "drinkName": "Demacia's Hot Cocoa ",
+      "drinkType": "human",
+      "price": 40,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 11,
+      "drinkName": "Cloudmane Cloudwater ",
+      "drinkType": "human",
+      "price": 45,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 12,
+      "drinkName": "Nightshade Dewdrop ",
+      "drinkType": "human",
+      "price": 50,
+      "drinkImage": "public/imgs"
+    }
+  ],
+  "celestial": [
+    {
+      "id": 13,
+      "drinkName": "Black Hole's extraction ",
+      "drinkType": "celestial",
+      "price": 35,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 14,
+      "drinkName": "Cosmic Tears",
+      "drinkType": "celestial",
+      "price": 40,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 15,
+      "drinkName": "Echoes of Creation ",
+      "drinkType": "celestial",
+      "price": 45,
+      "drinkImage": "public/imgs"
+    },
+    {
+      "id": 16,
+      "drinkName": "Targonian Latté ",
+      "drinkType": "celestial",
+      "price": 50,
+      "drinkImage": "public/imgs"
+    }
+  ],
+  "voidborn": [
+    {
+      "id": 17,
+      "drinkName": "Abyssal Draught ",
+      "drinkType": "voidborn",
+      "price": 35,
+      "drinkImage": "public/imgs/abyssal.jpg"
+    },
+    {
+      "id": 18,
+      "drinkName": "Voidfire Vial ",
+      "drinkType": "voidborn",
+      "price": 40,
+      "drinkImage": "public/imgs/void.jpg"
+    },
+    {
+      "id": 19,
+      "drinkName": "Eldritch Essence ",
+      "drinkType": "voidborn",
+      "price": 45,
+      "drinkImage": "public/imgs/voidEssence.jpg"
+    },
+    {
+      "id": 20,
+      "drinkName": "Dark Rift Brew",
+      "drinkType": "voidborn",
+      "price": 50,
+      "drinkImage": "public/imgs/darkrift.jpg"
+    }
   ]
-  }
+}
