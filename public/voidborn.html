@@ -1,45 +1,38 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Voidborn's Menu</title>
-        <link rel="stylesheet" href="index.css" />
-        <link rel="stylesheet" href="voidborn.css" />
-    </head>
-    <body>
-        <div class="subcontainer">
-            <div class="headers">
-                <h1 class="title header">Doran's afterhour Café</h1>
-                <h3 id="test" class="title third"></h3>
-                <h4 class="title fourth">Please choose drinks to have</h4>
-            </div>
-            <div class="onPageItems">
-                <div id="listAreaReg" display="inline" class="list AreaRegion">
-                    <em class="Idrink">From Ionia we propose these drinks:</em
-                    ><br />
-                </div>
-                <br />
-                <div id="listAreaSpecial" class="list AreaSpecial">
-                    <em class="vbdrink">
-                        You can also find drinks from your realm that you can
-                        enjoy on Ionia:
-                    </em>
-                    <br />
-                </div>
-                <br />
-                <div id="cart" class="cartVB">
-                    <p class="VBp">total:</p>
-                    <span id="total" class="VBs">0</span>
-                </div>
-                <button id="confirmCart">confirm cart and checkout</button>
-            </div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h1 id="test">Runeterra's greatest Café</h1>
+      <h2>Hello Voidborn</h2>
+      <h3>Please choose drinks to have</h3>
+    </div>
+    <div id="listAreaReg" display="inline">
+      <em>From earth we propose these drinks:</em><br />
+    </div>
+    <br />
+    <div id="listAreaSpecial">
+      <em
+        >You can also find drinks from your planet that you can enjoy on
+        earth:<br
+      /></em>
+    </div>
+    <br />
+    <div id="cart">
+      <p>total:</p>
+      <span id="total">0</span>
+    </div>
+    <button id="confirmCart">confirm cart and checkout</button>
 
-        <script>
-            async function getDrinkLists(id, userName) {
-                document.getElementById("test").innerHTML +=
-                    `<h3 id="name"> You are : ${userName} . Your reservation number is : VB${id}.</h3>`;
+    <script>
+      async function getDrinkLists(id, userName) {
+        document.getElementById(
+          "test"
+        ).innerHTML += `<p id="name">name:${userName} id:${id}</p>`;
 
                 try {
                     const data = await fetch("/drinks");
@@ -63,7 +56,7 @@
     <input type="number" class="quantity" value="1" min="1">
     <button class="addToCart">Add to Cart</button>
    </div>`;
-                    });
+          });
 
                     const addToCartButtons =
                         document.querySelectorAll(".addToCart");
@@ -76,29 +69,27 @@
                             const quantity =
                                 product.querySelector(".quantity").value;
 
-                            // Fetch the product details asynchronously
-                            try {
-                                const drinkToAdd =
-                                    await getProductById(productId);
+              // Fetch the product details asynchronously
+              try {
+                const drinkToAdd = await getProductById(productId);
 
-                                // Calculate the total price for the current item
-                                const drinkTotal = drinkToAdd.price * quantity;
+                // Calculate the total price for the current item
+                const drinkTotal = drinkToAdd.price * quantity;
 
-                                // Update the cart total
-                                const cart = document.getElementById("cart");
-                                const cartTotal =
-                                    document.getElementById("total");
-                                let total = parseInt(cartTotal.innerText) || 0; // Set default to 0
-                                total += drinkTotal;
-                                cartTotal.innerText = total;
-                                try {
-                                    const data = fetch(
-                                        `/drinks/cart?id=${id}&user=${userName}&name=${drinkToAdd.drinkName}&qty=${quantity}&price=${drinkToAdd.price}`,
-                                        { method: "POST" },
-                                    );
-                                } catch {
-                                    console.log(error);
-                                }
+                // Update the cart total
+                const cart = document.getElementById("cart");
+                const cartTotal = document.getElementById("total");
+                let total = parseInt(cartTotal.innerText) || 0; // Set default to 0
+                total += drinkTotal;
+                cartTotal.innerText = total;
+                try {
+                  const data = fetch(
+                    `/drinks/cart?id=${id}&user=${userName}&name=${drinkToAdd.drinkName}&qty=${quantity}&price=${drinkToAdd.price}`,
+                    { method: "POST" }
+                  );
+                } catch {
+                  console.log(error);
+                }
 
                                 // Add the item to the cart
                                 cart.innerHTML += `<p class='ListP'> ${drinkToAdd.drinkName} :  QTY : ${quantity} .  ${drinkTotal} <span><img src="BE.png" alt="BE" class="coinimg"/></span> </p> `;
@@ -137,3 +128,6 @@
         </script>
     </body>
 </html>
+
+
+<!-- salam -->

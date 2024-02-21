@@ -15,17 +15,21 @@ const getProductById = (id, list) => {
     return result;
 }
 
-const searchProduct = (min , max ,list ) => {
-    productMatch = list.filter(product => product.price >= min && product.price <= max )
-    return productMatch
- }
 
- const updateProduct = (id , query , list )=>{
+const getElementById = (id , array) =>{
+    return array.find(product =>{
+        return Number(product.drinkId) === Number(id);
+    })
+    } 
     
- }
-
+    const getIndexById = (id, elementList) => {
+        return elementList.findIndex((element) => {
+            return element.drinkId === id.toString();
+        });
+    };
 
 module.exports ={
     getProductById : getProductById,
-    searchProduct : searchProduct
+    getElementById: getElementById,
+    getIndexById:getIndexById
 }

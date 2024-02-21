@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div>
-        <h1>Runeterra's greatest Café</h1>
-        <h2>Hello Humans and Vastayahs</h2>
-        <h3 id="userGreeting">Please choose drinks to have</h3>
+      <h1>Runeterra's greatest Café</h1>
+      <h2>Hello Yordle</h2>
+      <h3 id="userGreeting">Please choose drinks to have</h3>
     </div>
-    <div id="listAreaReg"><em>From earth we propose these drinks:</em><br> </div><br>
-    <div id="listAreaSpecial"> <em>You can also find drinks from your planet that you can enjoy on earth:<br></em></div><br>
-
-    
+    <div id="listAreaReg">
+      <em>From earth we propose these drinks:</em><br />
+    </div>
+    <br />
+    <div id="listAreaSpecial">
+      <em
+        >You can also find drinks from your planet that you can enjoy on
+        earth:<br
+      /></em>
+    </div>
+    <br />
     <div id="cart">
-        <p>total:</p>
-        <span id="total">0</span>
-      </div>
-      <button id="confirmCart">confirm cart and checkout</button>
+      <p>total:</p>
+      <span id="total">0</span>
+    </div>
+    <button id="confirmCart">confirm cart and checkout</button>
 
     <script>
-        async function getDrinkLists(id,userName){
-            document.getElementById(
+      async function getDrinkLists(id, userName) {
+        document.getElementById(
           "userGreeting"
         ).innerHTML += `<p id="name">name:${userName} id:${id}</p>`;
-            try {
-                const data = await fetch('/drinks');
-                const drinkList = await data.json();
-                const listAreaReg = document.getElementById('listAreaReg')
-                const listAreaSpecial = document.getElementById('listAreaSpecial')
-                const regular = drinkList.normal
-                const special = drinkList.human;
-                regular.forEach(element => {
-                    listAreaReg.innerHTML +=`  <div class="product">
+        try {
+          const data = await fetch("/drinks");
+          const drinkList = await data.json();
+          const listAreaReg = document.getElementById("listAreaReg");
+          const listAreaSpecial = document.getElementById("listAreaSpecial");
+          const regular = drinkList.normal;
+          const special = drinkList.yordle;
+          regular.forEach((element) => {
+            listAreaReg.innerHTML += `  <div class="product">
         <h2>${element.drinkName}</h2>   <p>price:${element.price} BE</p><p class="id" >id: ${element.id}</p><br>
         <input type="number" class="quantity" value="1" min="1">
         <button class="addToCart">Add to Cart</button>
-       </div> `
-                });
-                special.forEach(element =>{
-                    listAreaSpecial.innerHTML +=`  <div class="product">
+       </div> `;
+          });
+          special.forEach((element) => {
+            listAreaSpecial.innerHTML += `  <div class="product">
         <h2>${element.drinkName}</h2>   <p>price:${element.price} BE</p><p class="id" >id: ${element.id}</p><br>
         <input type="number" class="quantity" value="1" min="1">
         <button class="addToCart">Add to Cart</button>
-       </div> `
-                })
-
-                //the function that creates the product place in the cart and accumulate the total
-
+       </div> `;
+          });
           const addToCartButtons = document.querySelectorAll(".addToCart");
           addToCartButtons.forEach((button) => {
             button.addEventListener("click", async (event) => {
@@ -88,14 +92,9 @@
               }
             });
           });
-
-
-
-            }catch {
-
-            } }
-            window.onload = ()=>{
-                getDrinkLists();
+        } catch {}
+      }
+      window.onload = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const userName = urlParams.get("name");
         const id = urlParams.get("id");
@@ -104,9 +103,10 @@
           .getElementById("confirmCart")
           .addEventListener("click", (evnet) => {
             window.location.href = `/cart.html?id=${id}&name=${userName}`;
-          });}
-
-          async function getProductById(id) {
+          });
+      };
+      // get product that matches the id
+      async function getProductById(id) {
         try {
           const data = await fetch(`/drinks/${id}`);
           const product = await data.json();
@@ -116,5 +116,5 @@
         }
       }
     </script>
-</body>
+  </body>
 </html>

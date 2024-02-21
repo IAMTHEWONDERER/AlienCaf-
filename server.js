@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
-const {getProductById , searchProduct } = require('./fonctionsUtil')
+const {getProductById , getIndexById ,getElementById} = require('./fonctionsUtil');
+const { log } = require('console');
 
 const port = 4400;
 
@@ -29,28 +30,27 @@ app.post('/users', (req, res) => {
     })
    
 })
-// app.get('/users/reserve.html', (req,res)=>{
-//     fs.readFile('./public/reserve.html', (error,data)=>{
-//         if(error){
-//             console.log(error);
-//         }
-//         else{
-//             res.send(data);
-//         }
-//     })
-// })
-app.get('/voidborn', (req, res) => {
-    res.sendFile(__dirname + '/public/voidborn.html');
-});
-app.get('/human', (req, res) => {
-    res.sendFile(__dirname + '/public/human.html');
-});
-app.get('/yordle', (req, res) => {
-    res.sendFile(__dirname + '/public/yordle.html');
-});
-app.get('/celestial', (req, res) => {
-    res.sendFile(__dirname + '/public/celestial.html');
-});
+app.get('/users/:id',(req,res)=>{
+    console.log(req.params.id)
+    fs.readFile('user.json',(err,data)=>{
+        if (err){
+            console.log(err.message);
+            return;
+        }
+        const users = JSON.parse(data);
+        const user = getElementById(req.params.id, users);
+        console.log(user)
+        if (user){
+            res.send(user)
+        }else {
+            res.status(404).send();
+        }
+        
+
+    })
+})
+
+
 app.get('/drinks',(req,res)=>{
     fs.readFile('drinks.json', (err,data)=>{
         if(err){
@@ -80,9 +80,108 @@ app.get('/drinks/:id' , (req,res)=>{
 
 })
 app.post('/drinks/cart' , (req,res)=>{
-    console.log(req.query);
+    fs.readFile('cart.json', (err,data)=>{
+if (err){
+    console.log(err);
+    return
+}
+const idProperty = req.query.id
+const cart = JSON.parse(data);
+console.log(cart)
+let cartId = cart[idProperty] || [];
+console.log('This cartId before  push',cartId);
+
+const {user,name,qty,price,drinkId} = req.query
+const NewQty = {user,name,qty,price,drinkId} 
+const drinkIndex = cartId.findIndex(item => item.drinkId === NewQty.drinkId );
+if (drinkIndex == -1) {
+    cartId.push(NewQty);
+console.log('This cartId after push',cartId);
+} else {
+    cartId[drinkIndex].qty = NewQty.qty;
+}
+console.log('this is the new QTY', NewQty);
+cart[idProperty] = cartId;
+const jsonCart = JSON.stringify(cart)
+console.log('the cart after update ',jsonCart)
+fs.writeFile('cart.json', jsonCart, (ERR)=>{
+    if (ERR) {
+        console.log(ERR);
+    }
+    else {
+        console.log('success');
+    }
+})
 
 })
+
+})
+app.get('/cart/:id',(req,res) =>{
+    fs.readFile('cart.json',(err,data)=>{
+        if (err){
+            console.log(err);
+            return ;
+        }
+        const cart = JSON.parse(data);
+        const customerCart = cart[req.params.id];
+        console.log(customerCart);
+        res.send(customerCart);
+    })
+})
+app.put('/cart/:id',(req,res)=>{
+    fs.readFile('cart.json',(err,data)=>{
+        if (err){
+            console.log(err);
+            return ;
+        }
+        const cart = JSON.parse(data);
+        const customerCart = cart[req.params.id];
+        const productToUpdate = getElementById(req.query.productId,customerCart);
+        productToUpdate.qty = req.query.newQuantity;
+        res.send(customerCart)
+        // console.log(cart);
+        fs.writeFile('cart.json', JSON.stringify(cart), (ERR)=>{
+            if (ERR) {
+                console.log(ERR);
+            }
+            else {
+                console.log('success');
+            }
+        })
+    })
+
+})
+app.delete('/cart/:id',(req,res) =>{
+    fs.readFile('cart.json',(err,data)=>{
+        if (err){
+            console.log(err);
+            return ;
+        }
+        console.log(req.query.idToRemove);
+
+        const cart = JSON.parse(data);
+        const customerCart = cart[req.params.id];
+        const productToRemoveInd = getIndexById(req.query.idToRemove,customerCart);
+        customerCart.splice(productToRemoveInd,1);
+        res.send(customerCart)
+        console.log('after' ,customerCart);
+        fs.writeFile('cart.json', JSON.stringify(cart), (ERR)=>{
+            if (ERR) {
+                console.log(ERR);
+            }
+            else {
+                console.log('success');
+            }
+        })
+        
+
+        
+
+
+
+
+    })
+} )
 
 
 app.listen(port, () => {
